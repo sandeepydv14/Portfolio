@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-// Minimal valid PDF structure
+// Valid PDF creation script for Sandeep's Data Analyst Resume
 const pdfContent = `%PDF-1.4
 1 0 obj
 << /Type /Catalog /Pages 2 0 R >>
@@ -10,44 +10,131 @@ endobj
 << /Type /Pages /Kids [3 0 R] /Count 1 >>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
 endobj
 4 0 obj
-<< /Length 260 >>
+<< /Length 1250 >>
 stream
 BT
-/F1 24 Tf
-100 700 Td
-(SANDEEP - ASPIRING DATA ANALYST) Tj
-/F1 12 Tf
-0 -30 Td
-(B.Tech Information Technology - J.C. Bose University YMCA) Tj
-0 -20 Td
-(Email: sandeepyadav141101@gmail.com | Phone: 8708801922) Tj
-0 -20 Td
-(GitHub: github.com/sandeepydv14 | LinkedIn: linkedin.com/in/sandeep-yadav-136b0b276) Tj
-0 -40 Td
-(Skills: Python, SQL, Excel, Power BI, Tableau, Data Cleaning, EDA) Tj
-0 -20 Td
-(Projects: Sales Performance & Profitability Analysis | Netflix Content Analysis) Tj
+/F2 20 Tf
+50 740 Td
+(SANDEEP) Tj
+/F1 10 Tf
+0 -18 Td
+(Aspiring Data Analyst | B.Tech Information Technology Student) Tj
+0 -14 Td
+(Email: sandeepyadav141101@gmail.com | Phone: +91 8708801922 | Location: Faridabad / Delhi NCR) Tj
+0 -12 Td
+(LinkedIn: linkedin.com/in/sandeep-yadav-136b0b276 | GitHub: github.com/sandeepydv14) Tj
+
+0 -24 Td
+/F2 12 Tf
+(PROFESSIONAL SUMMARY) Tj
+0 -4 Td
+/F1 9 Tf
+0 -12 Td
+(Final-year B.Tech IT student at J.C. Bose University of Science and Technology, YMCA \(CGPA: 6.34 till 6th sem\).) Tj
+0 -12 Td
+(Passionate about data cleaning, exploratory analysis, SQL querying, and building interactive BI dashboards) Tj
+0 -12 Td
+(in Power BI, Tableau, and Excel to translate raw datasets into actionable business insights.) Tj
+
+0 -22 Td
+/F2 12 Tf
+(EDUCATION) Tj
+0 -4 Td
+/F2 10 Tf
+0 -14 Td
+(B.Tech in Information Technology) Tj
+/F1 9 Tf
+200 0 Td
+(Final Year - 7th Semester) Tj
+-200 -12 Td
+(J.C. Bose University of Science and Technology, YMCA, Faridabad, Haryana) Tj
+0 -12 Td
+(Academic Standing: Cumulative CGPA till 6th Semester: 6.34 / 10.0) Tj
+
+0 -16 Td
+/F2 10 Tf
+(Class 12th - Senior Secondary Education) Tj
+/F1 9 Tf
+0 -12 Td
+(White Leaf Public School, Bawana, Delhi | Science Stream with Computer Science) Tj
+
+0 -16 Td
+/F2 10 Tf
+(Class 10th - Secondary Education) Tj
+/F1 9 Tf
+0 -12 Td
+(Holy Child Senior Secondary School, Hisar, Haryana | Science & Mathematics Foundation) Tj
+
+0 -22 Td
+/F2 12 Tf
+(TECHNICAL SKILLS) Tj
+0 -4 Td
+/F1 9 Tf
+0 -12 Td
+(Programming & Analysis: Python \(Pandas, NumPy, Matplotlib\), SQL \(MySQL\), Data Cleaning, EDA) Tj
+0 -12 Td
+(BI & Visualization: Microsoft Excel \(Pivot Tables, VLOOKUP\), Power BI, Tableau, Data Storytelling) Tj
+0 -12 Td
+(Tools & Workflow: Git, GitHub, Jupyter Notebook, VS Code) Tj
+
+0 -22 Td
+/F2 12 Tf
+(KEY DATA ANALYTICS PROJECTS) Tj
+0 -4 Td
+/F2 10 Tf
+0 -14 Td
+(Sales Performance & Profitability Analysis | Python, SQL, Power BI, Excel) Tj
+/F1 9 Tf
+0 -12 Td
+(- Analyzed 9,990+ retail sales transactions to isolate net profit drivers and high-margin product categories.) Tj
+0 -12 Td
+(- Discovered Furniture Tables sub-category incurred -$17.7K net loss due to excessive promotional discounts.) Tj
+0 -12 Td
+(- Formulated regional discount capping strategies and built executive Power BI dashboard.) Tj
+
+0 -16 Td
+/F2 10 Tf
+(Netflix Content & Trend Analysis | Python, Pandas, Matplotlib, Tableau) Tj
+/F1 9 Tf
+0 -12 Td
+(- Investigated 8,800+ streaming catalog titles to analyze content additions, release years, and country shifts.) Tj
+0 -12 Td
+(- Uncovered catalog composition \(69.6% Movies vs 30.4% TV Shows\) and annual addition spikes peaking in 2019.) Tj
+
+0 -22 Td
+/F2 12 Tf
+(CAMPUS ACTIVITIES & LEADERSHIP) Tj
+0 -4 Td
+/F1 9 Tf
+0 -12 Td
+(- Active Member, IEEE Student Club, J.C. Bose University YMCA) Tj
+0 -12 Td
+(- Participant, University-Level Hackathon \(Data Analysis & Visualization track\)) Tj
 ET
 endstream
 endobj
 5 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
 endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
 xref
-0 6
+0 7
 0000000000 65535 f 
 0000000009 00000 n 
 0000000058 00000 n 
 0000000115 00000 n 
-0000000244 00000 n 
-0000000554 00000 n 
+0000000253 00000 n 
+0000001554 00000 n 
+0000001625 00000 n 
 trailer
-<< /Size 6 /Root 1 0 R >>
+<< /Size 7 /Root 1 0 R >>
 startxref
-625
+1701
 %%EOF`;
 
 const resumeDir = path.resolve('public/resume');
@@ -56,4 +143,4 @@ if (!fs.existsSync(resumeDir)) {
 }
 
 fs.writeFileSync(path.join(resumeDir, 'Sandeep_Yadav_Resume.pdf'), pdfContent);
-console.log('Resume PDF generated successfully at public/resume/Sandeep_Yadav_Resume.pdf');
+console.log('Professional Data Analyst Resume generated at public/resume/Sandeep_Yadav_Resume.pdf');

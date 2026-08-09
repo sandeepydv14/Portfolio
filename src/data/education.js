@@ -44,10 +44,10 @@ export const educationData = [
     website: "https://jcboseust.ac.in",
     image: ymcaImg,
     highlights: [
-      "Information Technology Core Curriculum",
+      "Information Technology Core Major",
+      "Academic Performance: Cumulative CGPA till 6th Semester: 6.34 / 10.0",
       "Data Analytics, Database Management Systems (DBMS), SQL, Python",
-      "IEEE Club Member & University Hackathon Participant",
-      "Final Year — Currently in 7th Semester"
+      "IEEE Club Member & University Hackathon Participant"
     ]
   }
 ];

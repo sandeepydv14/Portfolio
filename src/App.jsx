@@ -13,6 +13,7 @@ import DataCleaningInspectorSection from './sections/DataCleaningInspectorSectio
 import SqlPlaygroundSection from './sections/SqlPlaygroundSection';
 import EducationSection from './sections/EducationSection';
 import ProjectsSection from './sections/ProjectsSection';
+import ResumeSection from './sections/ResumeSection';
 import CertificationsSection from './sections/CertificationsSection';
 import GithubSection from './sections/GithubSection';
 import ActivitiesSection from './sections/ActivitiesSection';
@@ -46,6 +47,7 @@ function App() {
         <SqlPlaygroundSection />
         <EducationSection />
         <ProjectsSection />
+        <ResumeSection />
         <CertificationsSection />
         <GithubSection />
         <ActivitiesSection />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, BarChart3, Download, Settings, Eye, Code2 } from 'lucide-react';
+import { Menu, X, BarChart3, Download, Settings, Eye } from 'lucide-react';
 import { getProfileData } from '../data/profile';
 import ProfileCustomizerModal from './ProfileCustomizerModal';
 import ResumeViewerModal from './ResumeViewerModal';
@@ -12,6 +12,7 @@ const navItems = [
   { label: 'SQL Sandbox', href: '#sql-sandbox' },
   { label: 'Education', href: '#education' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Resume', href: '#resume-section' },
   { label: 'Activities', href: '#activities' },
   { label: 'Contact', href: '#contact' },
 ];

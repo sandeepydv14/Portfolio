@@ -8,6 +8,7 @@ export const defaultProfileData = {
   university: "J.C. Bose University of Science and Technology, YMCA",
   degree: "B.Tech — Information Technology",
   semester: "Final Year — 7th Semester",
+  cgpa: "6.34 (Till 6th Sem)",
   careerGoal: "Aspiring Data Analyst",
   phone: "8708801922",
   email: "sandeepyadav141101@gmail.com",
@@ -25,15 +26,15 @@ export const defaultProfileData = {
     "Creating Meaningful Dashboards"
   ],
 
-  heroDescription: "I'm a final-year B.Tech IT student at J.C. Bose University of Science and Technology, passionate about transforming raw data into meaningful insights through analysis, visualization and business intelligence.",
+  heroDescription: "I'm a final-year B.Tech IT student at J.C. Bose University of Science and Technology, YMCA (CGPA: 6.34 till 6th sem), passionate about transforming raw data into meaningful insights through analysis, visualization and business intelligence.",
 
-  aboutBio: "I'm Sandeep, a final-year B.Tech Information Technology student at J.C. Bose University of Science and Technology, YMCA, and an aspiring Data Analyst. I enjoy working with data, cleaning datasets, discovering patterns, performing analysis and converting information into clear visual insights. My current focus is on Python, SQL, Excel, Power BI, Tableau and Data Visualization.",
+  aboutBio: "I'm Sandeep, a final-year B.Tech Information Technology student at J.C. Bose University of Science and Technology, YMCA (Cumulative CGPA: 6.34 till 6th semester), and an aspiring Data Analyst. I enjoy working with data, cleaning datasets, discovering patterns, performing analysis and converting information into clear visual insights. My current focus is on Python, SQL, Excel, Power BI, Tableau and Data Visualization.",
 
   stats: [
-    { label: "Current Semester", value: "7th Semester" },
-    { label: "Degree Program", value: "B.Tech IT" },
-    { label: "Analytics Projects", value: "2+" },
-    { label: "Focus Area", value: "Data Analytics Enthusiast" }
+    { label: "Current Standing", value: "7th Sem B.Tech IT" },
+    { label: "Academic CGPA", value: "6.34 / 10.0" },
+    { label: "Analytics Projects", value: "2+ BI Projects" },
+    { label: "Focus Area", value: "Data Analytics" }
   ]
 };
 
