@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Filter, BarChart3, TrendingUp, DollarSign, ShoppingBag, Layers, RefreshCw } from 'lucide-react';
-import { ResponsiveContainer, BarChart, Bar, AreaChart, Area, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 
 const rawTransactions = [
   { id: 1, region: 'West', category: 'Technology', sub: 'Phones', sales: 1250, profit: 245, month: 'Jan' },

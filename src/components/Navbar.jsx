@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, BarChart3, Download, Settings, Eye, Terminal, GraduationCap, Briefcase, User, Mail, Sparkles } from 'lucide-react';
 import { getProfileData } from '../data/profile';
@@ -24,6 +24,7 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [customizerOpen, setCustomizerOpen] = useState(false);
   const [resumeViewerOpen, setResumeViewerOpen] = useState(false);
+  const headerRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,6 +35,22 @@ const Navbar = () => {
       }
     };
     window.addEventListener('scroll', handleScroll);
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+        setCustomizerOpen(false);
+        setResumeViewerOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    const handleClickOutside = (e) => {
+      if (headerRef.current && !headerRef.current.contains(e.target)) {
+        setMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
 
     const sections = navItems.map((item) => document.querySelector(item.href)).filter(Boolean);
 
@@ -52,13 +69,27 @@ const Navbar = () => {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handleClickOutside);
       sections.forEach((sec) => observer.unobserve(sec));
     };
   }, []);
 
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    const targetElement = document.querySelector(href);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(href.substring(1));
+    }
+  };
+
+
   return (
     <>
       <header
+        ref={headerRef}
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
           isScrolled
             ? 'bg-[#070913]/90 backdrop-blur-xl border-b border-white/10 py-2.5 shadow-2xl shadow-black/60'
@@ -70,6 +101,7 @@ const Navbar = () => {
           {/* Brand Logo */}
           <a
             href="#home"
+            onClick={(e) => handleNavClick(e, '#home')}
             className="flex items-center gap-2.5 group focus:outline-none shrink-0"
           >
             <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 via-cyan-500 to-indigo-600 p-[1px] transition-transform duration-300 group-hover:scale-105 shadow-md shadow-cyan-500/20">
@@ -95,6 +127,7 @@ const Navbar = () => {
                 <a
                   key={item.label}
                   href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
                   className={`relative px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 whitespace-nowrap ${
                     isActive
                       ? 'text-white font-semibold'
@@ -113,6 +146,7 @@ const Navbar = () => {
               );
             })}
           </nav>
+
 
           {/* Right Action Buttons */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
@@ -174,7 +208,7 @@ const Navbar = () => {
                     <a
                       key={item.label}
                       href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
+                      onClick={(e) => handleNavClick(e, item.href)}
                       className={`flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all ${
                         isActive
                           ? 'bg-blue-600 text-white font-semibold shadow-md shadow-blue-500/20'

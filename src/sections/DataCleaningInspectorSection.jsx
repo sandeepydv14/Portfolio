@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, CheckCircle2, AlertTriangle, ArrowRight, Code2, RefreshCw } from 'lucide-react';
+import { CheckCircle2, AlertTriangle, Code2 } from 'lucide-react';
 
 const rawMessyRows = [
   { id: '1', date: '01/15/2021', category: 'Technology', sales: '$1,250.00', profit: '245.0', nulls: 'MISSING' },

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Upload, Camera, FileText, CheckCircle2, RotateCcw, Save, Sparkles, Download } from 'lucide-react';
+import { X, Upload, Camera, FileText, CheckCircle2, RotateCcw, Save, Sparkles } from 'lucide-react';
 import { defaultProfileData, getProfileData } from '../data/profile';
 
 const ProfileCustomizerModal = ({ isOpen, onClose, onSave }) => {
@@ -22,7 +22,32 @@ const ProfileCustomizerModal = ({ isOpen, onClose, onSave }) => {
   const [resumeStatus, setResumeStatus] = useState("Original PDF Attached");
   const [successNotice, setSuccessNotice] = useState("");
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalStyle;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
+
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
 
   // Handle Profile Picture File Upload
   const handleImageChange = (e) => {

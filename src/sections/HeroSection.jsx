@@ -4,7 +4,7 @@ import { ArrowRight, Download, Mail, Database, LineChart, FileSpreadsheet, Spark
 import { getProfileData } from '../data/profile';
 
 const HeroSection = () => {
-  const [profile, setProfile] = useState(getProfileData());
+  const [profile] = useState(getProfileData());
   const [phraseIndex, setPhraseIndex] = useState(0);
 
   useEffect(() => {

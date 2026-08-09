@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { Mail, Phone, Send, CheckCircle2, AlertCircle, Loader2, ExternalLink } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from '../components/SocialIcons';
 import confetti from 'canvas-confetti';
 import socialLinksData from '../data/socialLinks';
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [status, setStatus] = useState('idle'); // idle | loading | success | error
   const [errorMsg, setErrorMsg] = useState('');
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (status === 'error') {
+      setStatus('idle');
+      setErrorMsg('');
+    }
   };
 
   const handleSubmit = (e) => {
@@ -24,13 +28,18 @@ const ContactSection = () => {
       setStatus('error');
       return;
     }
-    if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email)) {
+    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
       setErrorMsg('Please enter a valid email address.');
       setStatus('error');
       return;
     }
-    if (!formData.message.trim()) {
-      setErrorMsg('Please enter your message.');
+    if (!formData.subject.trim()) {
+      setErrorMsg('Please enter a subject for your message.');
+      setStatus('error');
+      return;
+    }
+    if (!formData.message.trim() || formData.message.trim().length < 10) {
+      setErrorMsg('Please enter a message containing at least 10 characters.');
       setStatus('error');
       return;
     }
@@ -40,7 +49,7 @@ const ContactSection = () => {
     // Simulate clean dispatch with canvas-confetti burst
     setTimeout(() => {
       setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
 
       confetti({
         particleCount: 80,
@@ -48,6 +57,14 @@ const ContactSection = () => {
         origin: { y: 0.6 }
       });
     }, 1200);
+  };
+
+  const handleMailto = () => {
+    const subject = encodeURIComponent(formData.subject || 'Portfolio Inquiry');
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+    window.location.href = `mailto:${socialLinksData.email}?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -159,48 +176,70 @@ const ContactSection = () => {
             <div className="glass-card p-8 rounded-3xl border border-white/10 relative overflow-hidden shadow-2xl">
               <div className="absolute top-0 right-0 w-48 h-48 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="name" className="block text-xs font-mono text-gray-300 uppercase mb-2">
+                      Your Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Enter your name"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 text-sm transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-xs font-mono text-gray-300 uppercase mb-2">
+                      Your Email *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="sandeep@example.com"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 text-sm transition-colors"
+                    />
+                  </div>
+                </div>
+
                 <div>
-                  <label htmlFor="name" className="block text-xs font-mono text-gray-300 uppercase mb-2">
-                    Your Name *
+                  <label htmlFor="subject" className="block text-xs font-mono text-gray-300 uppercase mb-2">
+                    Subject *
                   </label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
                     onChange={handleChange}
-                    placeholder="Enter your name"
+                    placeholder="Data Analyst Internship / Placement Opportunity"
                     className="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 text-sm transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-xs font-mono text-gray-300 uppercase mb-2">
-                    Your Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="sandeep@example.com"
-                    className="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 text-sm transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-xs font-mono text-gray-300 uppercase mb-2">
-                    Your Message *
-                  </label>
+                  <div className="flex items-center justify-between mb-2">
+                    <label htmlFor="message" className="block text-xs font-mono text-gray-300 uppercase">
+                      Your Message *
+                    </label>
+                    <span className="text-[11px] font-mono text-gray-500">
+                      {formData.message.length} chars
+                    </span>
+                  </div>
                   <textarea
                     id="message"
                     name="message"
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Write your message here..."
+                    placeholder="Write your message here (min 10 characters)..."
                     className="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 text-sm transition-colors"
                   />
                 </div>
@@ -217,27 +256,39 @@ const ContactSection = () => {
                 {status === 'success' && (
                   <div className="p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs flex items-center gap-2 font-mono">
                     <CheckCircle2 className="w-4 h-4 shrink-0" />
-                    <span>Message received! Thank you for getting in touch. (Demo Dispatch Mode)</span>
+                    <span>Message received! Thank you for getting in touch.</span>
                   </div>
                 )}
 
-                <button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="w-full py-3.5 px-6 rounded-xl font-semibold text-xs text-white bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-700 hover:from-blue-500 hover:to-cyan-500 shadow-xl shadow-blue-600/30 transition-all duration-300 hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2"
-                >
-                  {status === 'loading' ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Sending Message...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4" />
-                      <span>Send Message</span>
-                    </>
-                  )}
-                </button>
+                <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
+                  <button
+                    type="submit"
+                    disabled={status === 'loading'}
+                    className="w-full sm:flex-1 py-3.5 px-6 rounded-xl font-semibold text-xs text-white bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-700 hover:from-blue-500 hover:to-cyan-500 shadow-xl shadow-blue-600/30 transition-all duration-300 hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2"
+                  >
+                    {status === 'loading' ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Sending Message...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        <span>Send Message</span>
+                      </>
+                    )}
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleMailto}
+                    className="w-full sm:w-auto px-5 py-3.5 rounded-xl font-semibold text-xs text-gray-300 bg-slate-800/80 hover:bg-slate-700 border border-white/10 hover:border-cyan-500/30 transition-all flex items-center justify-center gap-2"
+                    title="Open default email client"
+                  >
+                    <ExternalLink className="w-4 h-4 text-cyan-400" />
+                    <span>Open Email App</span>
+                  </button>
+                </div>
               </form>
             </div>
           </div>
@@ -249,3 +300,4 @@ const ContactSection = () => {
 };
 
 export default ContactSection;
+
