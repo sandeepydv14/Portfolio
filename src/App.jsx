@@ -6,8 +6,10 @@ import HeroSection from './sections/HeroSection';
 import AboutSection from './sections/AboutSection';
 import WorkflowSection from './sections/WorkflowSection';
 import SkillsSection from './sections/SkillsSection';
+import SqlPlaygroundSection from './sections/SqlPlaygroundSection';
 import EducationSection from './sections/EducationSection';
 import ProjectsSection from './sections/ProjectsSection';
+import CertificationsSection from './sections/CertificationsSection';
 import GithubSection from './sections/GithubSection';
 import ActivitiesSection from './sections/ActivitiesSection';
 import ContactSection from './sections/ContactSection';
@@ -31,8 +33,10 @@ function App() {
         <AboutSection />
         <WorkflowSection />
         <SkillsSection />
+        <SqlPlaygroundSection />
         <EducationSection />
         <ProjectsSection />
+        <CertificationsSection />
         <GithubSection />
         <ActivitiesSection />
         <ContactSection />

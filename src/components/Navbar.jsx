@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, BarChart3, Download, Settings } from 'lucide-react';
+import { Menu, X, BarChart3, Download, Settings, Eye, Code2 } from 'lucide-react';
 import { getProfileData } from '../data/profile';
 import ProfileCustomizerModal from './ProfileCustomizerModal';
+import ResumeViewerModal from './ResumeViewerModal';
 
 const navItems = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Workflow', href: '#workflow' },
   { label: 'Skills', href: '#skills' },
+  { label: 'SQL Sandbox', href: '#sql-sandbox' },
   { label: 'Education', href: '#education' },
   { label: 'Projects', href: '#projects' },
   { label: 'Activities', href: '#activities' },
@@ -20,6 +22,7 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [customizerOpen, setCustomizerOpen] = useState(false);
+  const [resumeViewerOpen, setResumeViewerOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +34,6 @@ const Navbar = () => {
     };
     window.addEventListener('scroll', handleScroll);
 
-    // Active section detection
     const sections = navItems.map((item) => document.querySelector(item.href)).filter(Boolean);
 
     const observer = new IntersectionObserver(
@@ -63,6 +65,7 @@ const Navbar = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          
           {/* Brand Logo */}
           <a
             href="#home"
@@ -84,7 +87,7 @@ const Navbar = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1 glass-panel px-4 py-1.5 rounded-full border border-white/10">
+          <nav className="hidden xl:flex items-center gap-1 glass-panel px-4 py-1.5 rounded-full border border-white/10">
             {navItems.map((item) => {
               const isActive = activeSection === item.href.substring(1);
               return (
@@ -104,8 +107,17 @@ const Navbar = () => {
           </nav>
 
           {/* Action Buttons & Mobile Toggle */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             
+            {/* View Resume Modal Trigger */}
+            <button
+              onClick={() => setResumeViewerOpen(true)}
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-mono font-semibold text-gray-300 bg-slate-800/80 hover:bg-slate-700 border border-white/10 hover:border-cyan-500/30 transition-all hover:scale-105"
+            >
+              <Eye className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Preview Resume</span>
+            </button>
+
             {/* Customize Info Button */}
             <button
               onClick={() => setCustomizerOpen(true)}
@@ -113,7 +125,7 @@ const Navbar = () => {
               title="Edit Profile Picture, Resume PDF & Info"
             >
               <Settings className="w-3.5 h-3.5 text-cyan-400 animate-spin-slow" />
-              <span className="hidden lg:inline">Edit Info</span>
+              <span className="hidden md:inline">Edit Info</span>
             </button>
 
             <a
@@ -128,7 +140,7 @@ const Navbar = () => {
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2.5 rounded-xl bg-slate-800/80 border border-white/10 text-gray-300 hover:text-white focus:outline-none"
+              className="xl:hidden p-2.5 rounded-xl bg-slate-800/80 border border-white/10 text-gray-300 hover:text-white focus:outline-none"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -138,7 +150,7 @@ const Navbar = () => {
 
         {/* Mobile Animated Drawer Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden fixed inset-x-0 top-[65px] bg-[#0b0f19]/95 backdrop-blur-xl border-b border-white/10 px-6 py-6 transition-all duration-300 shadow-2xl z-50">
+          <div className="xl:hidden fixed inset-x-0 top-[65px] bg-[#0b0f19]/95 backdrop-blur-xl border-b border-white/10 px-6 py-6 transition-all duration-300 shadow-2xl z-50">
             <div className="flex flex-col gap-3">
               {navItems.map((item) => {
                 const isActive = activeSection === item.href.substring(1);
@@ -158,6 +170,17 @@ const Navbar = () => {
                 );
               })}
               
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setResumeViewerOpen(true);
+                }}
+                className="w-full text-center flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-gray-200 bg-slate-800 border border-white/10"
+              >
+                <Eye className="w-4 h-4 text-cyan-400" />
+                Preview Resume PDF
+              </button>
+
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
@@ -188,6 +211,12 @@ const Navbar = () => {
         isOpen={customizerOpen}
         onClose={() => setCustomizerOpen(false)}
         onSave={(updated) => setProfile(updated)}
+      />
+
+      {/* Resume Viewer Modal */}
+      <ResumeViewerModal
+        isOpen={resumeViewerOpen}
+        onClose={() => setResumeViewerOpen(false)}
       />
     </>
   );
