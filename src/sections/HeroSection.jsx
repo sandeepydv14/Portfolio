@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Download, Mail, Database, LineChart, FileSpreadsheet, Sparkles } from 'lucide-react';
-import profileData from '../data/profile';
+import { getProfileData } from '../data/profile';
 
 const HeroSection = () => {
+  const [profile, setProfile] = useState(getProfileData());
   const [phraseIndex, setPhraseIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPhraseIndex((prev) => (prev + 1) % profileData.secondaryPhrases.length);
+      setPhraseIndex((prev) => (prev + 1) % profile.secondaryPhrases.length);
     }, 2800);
     return () => clearInterval(interval);
-  }, []);
+  }, [profile]);
 
   return (
     <section
@@ -36,7 +37,7 @@ const HeroSection = () => {
               className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/60 border border-blue-500/30 text-blue-300 text-xs font-mono tracking-wide"
             >
               <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
-              <span>{profileData.semester} • {profileData.degree}</span>
+              <span>{profile.semester} • {profile.degree}</span>
             </motion.div>
 
             {/* Greeting */}
@@ -46,7 +47,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-2xl sm:text-3xl font-bold text-gray-200"
             >
-              Hi, I'm <span className="text-white underline decoration-cyan-500/50 underline-offset-8">Sandeep</span> 👋
+              Hi, I'm <span className="text-white underline decoration-cyan-500/50 underline-offset-8">{profile.name}</span> 👋
             </motion.h2>
 
             {/* Animated Large Title */}
@@ -79,7 +80,7 @@ const HeroSection = () => {
                   transition={{ duration: 0.4 }}
                   className="font-semibold text-cyan-300 border-r-2 border-cyan-400 pr-1 animate-pulse"
                 >
-                  {profileData.secondaryPhrases[phraseIndex]}
+                  {profile.secondaryPhrases[phraseIndex]}
                 </motion.span>
               </div>
             </motion.div>
@@ -91,7 +92,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-base sm:text-lg text-gray-300 max-w-2xl leading-relaxed font-normal"
             >
-              {profileData.heroDescription}
+              {profile.heroDescription}
             </motion.p>
 
             {/* CTA Buttons */}
@@ -110,8 +111,8 @@ const HeroSection = () => {
               </a>
 
               <a
-                href={profileData.resumePath}
-                download="Sandeep_Yadav_Resume.pdf"
+                href={profile.resumePath}
+                download={profile.resumeName || "Sandeep_Yadav_Resume.pdf"}
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm text-gray-200 bg-slate-800/80 hover:bg-slate-700/90 border border-white/10 hover:border-cyan-500/40 shadow-md transition-all duration-300 hover:scale-105 active:scale-95"
               >
                 <Download className="w-4 h-4 text-cyan-400" />
@@ -163,8 +164,8 @@ const HeroSection = () => {
                 {/* Profile Image Frame */}
                 <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden mb-6 border-2 border-cyan-500/30 shadow-2xl group">
                   <img
-                    src={profileData.profileImage}
-                    alt={profileData.name}
+                    src={profile.profileImage}
+                    alt={profile.name}
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#070913] via-transparent to-transparent opacity-60" />
@@ -178,10 +179,10 @@ const HeroSection = () => {
 
                 {/* Profile Card Header Info */}
                 <h3 className="text-xl font-bold text-white text-center">
-                  {profileData.name}
+                  {profile.name}
                 </h3>
                 <p className="text-xs text-cyan-400 font-mono mt-1 text-center">
-                  {profileData.university}
+                  {profile.university}
                 </p>
 
                 {/* Glass Metric Pill Overlay Cards */}

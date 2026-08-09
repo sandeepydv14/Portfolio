@@ -1,6 +1,7 @@
-import sandeepImg from '../assets/profile/sandeep.jpg';
+import defaultSandeepImg from '../assets/profile/sandeep.jpg';
 
-export const profileData = {
+// Base Profile Configuration
+export const defaultProfileData = {
   name: "Sandeep",
   title: "Aspiring Data Analyst",
   subTitle: "B.Tech IT Student",
@@ -13,7 +14,7 @@ export const profileData = {
   linkedin: "https://www.linkedin.com/in/sandeep-yadav-136b0b276",
   github: "https://github.com/sandeepydv14",
   instagram: "https://instagram.com/letcsndy",
-  profileImage: sandeepImg,
+  profileImage: defaultSandeepImg,
   resumePath: "/resume/Sandeep_Yadav_Resume.pdf",
   
   secondaryPhrases: [
@@ -35,5 +36,27 @@ export const profileData = {
     { label: "Focus Area", value: "Data Analytics Enthusiast" }
   ]
 };
+
+// Function to load profile with local storage overrides
+export const getProfileData = () => {
+  try {
+    const saved = localStorage.getItem('sandeep_portfolio_profile');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      return {
+        ...defaultProfileData,
+        ...parsed,
+        // Preserve image fallback if missing
+        profileImage: parsed.profileImage || defaultSandeepImg,
+        resumePath: parsed.resumePath || "/resume/Sandeep_Yadav_Resume.pdf"
+      };
+    }
+  } catch (e) {
+    console.warn("Could not load saved profile overrides:", e);
+  }
+  return defaultProfileData;
+};
+
+export const profileData = getProfileData();
 
 export default profileData;
