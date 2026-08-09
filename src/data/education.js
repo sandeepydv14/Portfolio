@@ -1,6 +1,6 @@
 import ymcaImg from '../assets/education/ymca.jpg';
-import whiteLeafImg from '../assets/education/white_leaf.jpg';
-import holyChildImg from '../assets/education/holy_child.jpg';
+import whiteLeafImg from '../assets/education/white_leaf.png';
+import holyChildImg from '../assets/education/holy_child.avif';
 
 export const educationData = [
   {

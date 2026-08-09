@@ -1,4 +1,4 @@
-import defaultSandeepImg from '../assets/profile/sandeep.jpg';
+import defaultSandeepImg from '../assets/profile/sandeep.jpeg';
 
 // Base Profile Configuration
 export const defaultProfileData = {
@@ -46,7 +46,6 @@ export const getProfileData = () => {
       return {
         ...defaultProfileData,
         ...parsed,
-        // Preserve image fallback if missing
         profileImage: parsed.profileImage || defaultSandeepImg,
         resumePath: parsed.resumePath || "/resume/Sandeep_Yadav_Resume.pdf"
       };
