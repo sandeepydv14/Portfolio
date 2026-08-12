@@ -88,7 +88,7 @@ const ResumeSection = () => {
               Executive Summary
             </h4>
             <p className="text-sm text-gray-300 leading-relaxed font-normal p-4 rounded-2xl bg-slate-900/60 border border-white/5">
-              Final-year B.Tech Information Technology student at J.C. Bose University of Science and Technology, YMCA (**Cumulative CGPA: 6.34 till 6th semester**). Passionate about transforming raw datasets into strategic business insights using Python, SQL, Microsoft Excel, Power BI, and Tableau. Demonstrated capability in exploratory data analysis (EDA), data cleaning, relational database querying, and executive BI dashboard design through hands-on analytics projects.
+              Final-year B.Tech Information Technology student (2023 - 27) at J.C. Bose University of Science and Technology, YMCA (**Cumulative CGPA: 6.34 till 6th semester**). Passionate about transforming raw datasets into strategic business insights using Python, SQL, Microsoft Excel, Power BI, and Tableau. Demonstrated capability in exploratory data analysis (EDA), data cleaning, relational database querying, and executive BI dashboard design through hands-on analytics projects.
             </p>
           </div>
 
@@ -109,11 +109,11 @@ const ResumeSection = () => {
                     </span>
                   </div>
                   <p className="text-xs text-gray-400 font-mono mt-0.5">
-                    J.C. Bose University of Science and Technology, YMCA, Faridabad, Haryana
+                    J.C. Bose University of Science and Technology, YMCA, Faridabad, Haryana • Batch: 2023 – 27
                   </p>
                 </div>
                 <span className="text-xs font-mono text-cyan-400 bg-cyan-950/60 border border-cyan-500/30 px-3 py-1 rounded-full shrink-0">
-                  Final Year — 7th Semester
+                  2023 - 27 (Final Year)
                 </span>
               </div>
 

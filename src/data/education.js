@@ -38,13 +38,14 @@ export const educationData = [
     institution: "J.C. Bose University of Science and Technology, YMCA",
     formerly: "YMCA UST",
     classOrDegree: "B.Tech — Information Technology",
-    status: "Final Year — 7th Semester",
+    years: "2023 - 27",
+    status: "2023 - 27 (Final Year)",
     fullAddress: "J.C. Bose University of Science and Technology, YMCA (Formerly YMCA UST), NH-2, Mathura Rd, Sector 6, Faridabad, Haryana 121006",
     mapLink: "https://www.google.com/maps/search/?api=1&query=JC+Bose+University+of+Science+and+Technology+YMCA+Sector+6+Faridabad+Haryana+121006",
     website: "https://jcboseust.ac.in",
     image: ymcaImg,
     highlights: [
-      "Information Technology Core Major",
+      "Information Technology Major (2023 - 27)",
       "Academic Performance: Cumulative CGPA till 6th Semester: 6.34 / 10.0",
       "Data Analytics, Database Management Systems (DBMS), SQL, Python",
       "IEEE Club Member & University Hackathon Participant"
